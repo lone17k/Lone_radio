@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Radio Menu</title>
+</head>
+<body>
+    <div id="radioMenu" style="display: none;">
+        <div id="logoContainer">
+            <img src="./imgs/server.gif" alt="Logo" id="logo">
+        </div>
+        <div id="header">
+            <h2>Radio Menu</h2>
+        </div>
+        <ul id="radioList"></ul>
+        <div id="controls">
+            <div id="volumeControl">
+                <label for="volumeSlider">Volume</label>
+                <input type="range" id="volumeSlider" min="0" max="100" step="1" value="50">
+                <span id="volumeValue">50%</span>
+            </div>
+            <button id="stopRadio">Stop Radio</button>
+        </div>
+       
+    </div>
+    <div id="radioIcon" class="hidden">
+        <img src="./imgs/carradio.gif" alt="Radio Icon">
+        <div id="currentRadio">
+            <p id="currentRadioName">Currently Playing: None</p>
+            <marquee id="run" behavior="scroll" direction="left">Here is some scrolling text... right to left!</marquee>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

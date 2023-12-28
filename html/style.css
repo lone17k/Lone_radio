@@ -1,0 +1,206 @@
+/* html/style.css */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #80959f00;
+    margin: 0;
+    padding: 0;
+}
+
+
+@font-face {
+    font-family: "style";
+    src: url("./imgs/lazy.ttf");
+}
+@font-face {
+    font-family: "brush";
+    src: url("./imgs/brush.ttf");
+}
+#radioMenu {
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 700px;
+    max-width: 400px; /* Set your desired maximum width */
+    width: 100%; /* To ensure the container is responsive */
+    overflow: hidden; /* Hide overflowing content */
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#logoContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#logo {
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    border-radius: 50%;
+}
+
+
+h2 {
+    color: #fff;
+    font-family: "style";
+    font-size: 50px;
+    font-stretch: expanded;
+}
+
+#header {
+    margin-top: 10px;
+}
+
+#controls {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+}
+
+#volumeControl {
+    margin-right: 20px;
+}
+
+#volumeSlider {
+    width: 100%;
+}
+
+#volumeValue {
+    font-size: 14px;
+    margin-left: 5px;
+    color: white;
+}
+
+#stopRadio {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #3498db; /* Redesigned color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#stopRadio:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+}
+
+
+#currentRadio {
+    margin-bottom: 10px;
+}
+
+#currentRadioName {
+    color: #fff;
+    font-style: italic;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 600px; /* Set your desired maximum height */
+    overflow-y: auto; /* Enable vertical scrollbar if needed */
+    scrollbar-width: thin; /* Firefox */
+}
+
+li {
+    cursor: pointer;
+    margin: 5px;
+    padding: 10px;
+    font-family: "brush";
+    background-color: #ff1212;
+    color: #fff;
+    border-radius: 5px;
+}
+
+
+
+button:hover {
+    background-color: #c9302c;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4e4e4e;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #333;
+}
+
+@font-face {
+    font-family: digital;
+    src: url('./imgs/digital-7.ttf');
+}
+
+#radioIcon img {
+    width: 500px;
+    height: 150px;
+}
+
+#radioIcon {
+    position: fixed;
+    bottom: 30px;
+    right: 10px; /* Updated to position it in the bottom-left corner */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+
+#currentRadio {
+    margin-left: 250px;
+    align-items: center;
+    position: absolute;
+    overflow: hidden;
+}
+
+#currentRadio {
+    color: #000000; /* Adjust text color */
+    font-family: digital; /* Replace with your custom font */
+    font-size: 35px; /* Adjust font size */
+    font-style: bold;
+    margin: 150;
+    line-height: 50px;
+    overflow: hidden;
+    width: 100%;
+     
+    transform:translateX(50%);
+    /* Apply animation to this element */
+    animation: scroll-left 15s linear infinite;
+}
+
+
+@keyframes scroll-left {
+    0%   {
+    transform: translateX(70%); 		
+    }
+    100% {
+    transform: translateX(-10%); 
+    }
+   }
+
+  
