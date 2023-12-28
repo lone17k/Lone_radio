@@ -1,4 +1,4 @@
---made by .lone17 with ❤️
+--Made by .lone17 with ❤️
 
 xSound = exports.xsound
 

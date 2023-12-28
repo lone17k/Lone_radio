@@ -1,4 +1,4 @@
--- --made by .lone17 with ❤️
+-- \Made by .lone17 with ❤️
 
 local currentlyPlayingRadio = nil
 local currentVolume = 1.0 -- Default volume (1.0 = 100%)
