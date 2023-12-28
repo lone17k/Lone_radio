@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 name "lone_radio"
-description "car radio script by lone"
+description "qbcore car radio script by lone"
 author "Lone"
 version "1.0.0"
 
