@@ -1,4 +1,5 @@
--- client.lua
+--made by .lone17 with ❤️
+
 xSound = exports.xsound
 
 local currentlyPlayingRadio = nil

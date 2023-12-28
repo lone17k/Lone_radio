@@ -1,3 +1,5 @@
+--made by .lone17 with ❤️
+
 Config = {}
 
 Config.command = "radio"

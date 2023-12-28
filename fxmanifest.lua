@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 name "lone_radio"
-description "radio script by lone"
+description "car radio script by lone"
 author "Lone"
 version "1.0.0"
 
@@ -24,7 +24,6 @@ files {
 	'html/*',
 	'html/imgs/*'
 }
-
 
 dependencies {
 	'xsound'
