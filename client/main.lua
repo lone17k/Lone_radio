@@ -129,7 +129,37 @@ RegisterCommand(Config.command, function()
 end)
 
 -- ============================================================
+-- Nearby radio discovery (one-shot)
+-- Picks up vehicles that were ALREADY playing and in scope before
+-- we cared about them (e.g. when we first get into a car).
+-- Real-time discovery while driving is handled event-driven by the
+-- state-bag change handler below, which fires when a vehicle's bag
+-- is replicated to us on scope entry — so no perpetual scan is needed.
+-- ============================================================
+local function scanNearbyRadios()
+    local ped = PlayerPedId()
+    local plyCoords = GetEntityCoords(ped)
+    local vehicles = GetGamePool("CVehicle")
+
+    for _, vehicle in ipairs(vehicles) do
+        local netId = NetworkGetNetworkIdFromEntity(vehicle)
+        -- Skip already-tracked vehicles first (avoids statebag + coord native calls)
+        if not activeVehicleRadios[netId] then
+            local vehCoords = GetEntityCoords(vehicle)
+            if #(plyCoords - vehCoords) < 50.0 then
+                local state = Entity(vehicle).state.loneradio
+                if state and state.isPlaying then
+                    PlayVehicleRadioLocal(netId, state)
+                end
+            end
+        end
+    end
+end
+
+-- ============================================================
 -- VEHICLE ENTER/EXIT
+-- Single consolidated poll. On foot this is just one cheap
+-- IsPedInAnyVehicle check per second (~0.00ms resmon).
 -- ============================================================
 
 Citizen.CreateThread(function()
@@ -157,6 +187,9 @@ Citizen.CreateThread(function()
                     currentlyPlayingRadio = savedRadio
                     SendNUIMessage({ showradio = true, name = savedRadio.name })
                 end
+
+                -- One-shot: catch any nearby cars already playing around us
+                scanNearbyRadios()
             end
             wasInVehicle = true
 
@@ -278,36 +311,5 @@ AddStateBagChangeHandler('loneradio', nil, function(bagName, key, value, _reserv
     if currentVeh ~= 0 and NetworkGetNetworkIdFromEntity(currentVeh) == netId then
         currentlyPlayingRadio = value
         SendNUIMessage({ showradio = true, name = value.name })
-    end
-end)
-
--- Discover nearby vehicles with active radios
--- Optimised: 5s interval, vehicle-only gate, netId early-out before expensive calls
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(5000)
-        local ped = PlayerPedId()
-
-        -- Gate: radio is vehicle-only, no point scanning when on foot
-        if not IsPedInAnyVehicle(ped, false) then goto continue end
-
-        local plyCoords = GetEntityCoords(ped)
-        local vehicles = GetGamePool("CVehicle")
-
-        for _, vehicle in ipairs(vehicles) do
-            local netId = NetworkGetNetworkIdFromEntity(vehicle)
-            -- Skip already-tracked vehicles first (avoids statebag + coord native calls)
-            if not activeVehicleRadios[netId] then
-                local vehCoords = GetEntityCoords(vehicle)
-                if #(plyCoords - vehCoords) < 50.0 then
-                    local state = Entity(vehicle).state.loneradio
-                    if state and state.isPlaying then
-                        PlayVehicleRadioLocal(netId, state)
-                    end
-                end
-            end
-        end
-
-        ::continue::
     end
 end)
